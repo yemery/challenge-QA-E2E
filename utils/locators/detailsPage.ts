@@ -1,0 +1,1 @@
+const filterSidebar = '/html/body/main/div/div/div[13]/div[2]/div/div/div[1]/div[1]/p[contains(text(),"Filtres")]';
