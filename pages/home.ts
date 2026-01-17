@@ -22,7 +22,7 @@ export class HomePage {
         this.buttonLocator = homeLocators.ButtonLocator;
         this.brand = homeConstants.brand;
         this.category = homeConstants.category;
-        this.checkBoxLocator = homeLocators.CheckBoxLocator;
+        this.checkBoxLocator = homeLocators.CheckBoxOptionLocator;
     }
 
     async goToHomePage() {
@@ -60,22 +60,14 @@ export class HomePage {
 
     }
     async selectBrand() {
-        await this.page.click(this.checkBoxLocator(this.brand)).catch(async () => {
-            const allBrandCheckboxes = this.page.locator(this.checkBoxLocator(this.brand));
-            const count = await allBrandCheckboxes.count();
-            if (count > 0) {
-                await allBrandCheckboxes.nth(0).click();
-            }
+        const brandOption = this.page.getByRole('option', { 
+            name: this.checkBoxLocator(this.brand) 
         });
+        await brandOption.click();
+        await expect(brandOption).toHaveAttribute('aria-selected', 'true');
     }
-    async expectBrandToBeSelected() {
-        await expect(this.page.locator(this.checkBoxLocator(this.brand) + homeLocators.CheckedStatusLocator)).toBeChecked();
-    }
-    async confirmBrandSelection() {
-        const buttonLocator = this.page.getByRole('button', { name: homeConstants.buttonsText.confirmSelection });
-        await expect(buttonLocator).toBeVisible();
-        await buttonLocator.click();
-    }
+
+  
 
     async openCategoryDropDown() {
         await this.page.getByRole('button', {
@@ -85,23 +77,13 @@ export class HomePage {
 
     }
     async selectCategory() {
-        await this.page.click(this.checkBoxLocator(this.category)).catch(async () => {
-            const allCategoryCheckboxes = this.page.locator(this.checkBoxLocator(this.category))
-            const count = await allCategoryCheckboxes.count()
-            if (count > 0) {
-                await allCategoryCheckboxes.nth(0).click();
-            }
+        const categoryOption = this.page.getByRole('option', { 
+            name: this.checkBoxLocator(this.category) 
         });
+        await categoryOption.click();
+        await expect(categoryOption).toHaveAttribute('aria-selected', 'true');
     }
-    async expectCategoryToBeSelected() {
-        const checkBoxLocator = this.page.locator(this.checkBoxLocator(this.category) + homeLocators.CheckedStatusLocator);
-        await expect(checkBoxLocator).toBeChecked();
-    }
-    async confirmCategorySelection() {
-        const buttonLocator = this.page.getByRole('button', { name: homeConstants.buttonsText.confirmSelection });
-        await expect(buttonLocator).toBeVisible();
-        await buttonLocator.click();
-    }
+
 
     async clickSearchButton() {
         const buttonLocator = this.page.locator(this.buttonLocator(homeConstants.buttonsText.searchButton));

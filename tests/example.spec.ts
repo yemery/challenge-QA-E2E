@@ -16,13 +16,11 @@ test('test home page interactions', async ({ page }) => {
 
   await homePage.openBrandDropDown();
   await homePage.selectBrand();
-  await homePage.expectBrandToBeSelected();
-  await homePage.confirmBrandSelection();
+  
   
   await homePage.openCategoryDropDown();
   await homePage.selectCategory();
-  await homePage.expectCategoryToBeSelected();
-  await homePage.confirmCategorySelection();
+
 
   await homePage.clickSearchButton();
 
