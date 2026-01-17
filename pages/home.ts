@@ -61,12 +61,20 @@ export class HomePage {
     }
     async selectBrand() {
         const brandOption = this.page.getByRole('option', { 
-            name: this.checkBoxLocator(this.brand) 
+            name: this.brand
         });
         await brandOption.click();
         await expect(brandOption).toHaveAttribute('aria-selected', 'true');
     }
 
+    async confirmBrandSelection() {
+        const confirmButton = this.page.getByRole('button', {
+            name: homeConstants.buttonsText.confirmSelection
+
+        });
+        await expect(confirmButton).toBeVisible();
+        await confirmButton.click();
+    }
   
 
     async openCategoryDropDown() {
@@ -78,10 +86,19 @@ export class HomePage {
     }
     async selectCategory() {
         const categoryOption = this.page.getByRole('option', { 
-            name: this.checkBoxLocator(this.category) 
+            name: this.category
         });
         await categoryOption.click();
         await expect(categoryOption).toHaveAttribute('aria-selected', 'true');
+    }
+
+    async confirmCategorySelection() {
+        const confirmButton = this.page.getByRole('button', {
+            name: homeConstants.buttonsText.confirmSelection
+
+        });
+        await expect(confirmButton).toBeVisible();
+        await confirmButton.click();
     }
 
 
