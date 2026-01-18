@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 
 import { HomePage } from '../pages/home.js';
+import { FilterComponent } from '../pages/filter.js';
 
 
 
@@ -26,7 +27,12 @@ test('test home page interactions', async ({ page }) => {
 
   await homePage.clickSearchButton();
 
-  
+
+  const filterComponent = new FilterComponent(page);
+  await filterComponent.openFilterPanel();
+  await filterComponent.applyEligibilityFilter();
+  await filterComponent.setMaxInputValue();
+
   
 });
 

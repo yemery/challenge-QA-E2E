@@ -60,7 +60,7 @@ export class HomePage {
 
     }
     async selectBrand() {
-        const brandOption = this.page.getByRole('option', { 
+        const brandOption = this.page.getByRole('option', {
             name: this.brand
         });
         await brandOption.click();
@@ -75,7 +75,7 @@ export class HomePage {
         await expect(confirmButton).toBeVisible();
         await confirmButton.click();
     }
-  
+
 
     async openCategoryDropDown() {
         await this.page.getByRole('button', {
@@ -85,7 +85,7 @@ export class HomePage {
 
     }
     async selectCategory() {
-        const categoryOption = this.page.getByRole('option', { 
+        const categoryOption = this.page.getByRole('option', {
             name: this.category
         });
         await categoryOption.click();

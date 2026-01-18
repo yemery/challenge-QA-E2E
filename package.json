@@ -2,7 +2,15 @@
   "name": "challenge-qa-e2e",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:mobile": "playwright test --project='Mobile Chrome'",
+    "report": "playwright show-report",
+    "docker:build": "docker build -t playwright-e2e .",
+    "docker:run": "docker-compose up --build",
+    "docker:test": "docker run --rm -v %cd%/playwright-report:/app/playwright-report -v %cd%/test-results:/app/test-results playwright-e2e"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

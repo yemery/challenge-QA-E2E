@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  playwright-tests:
+    build: .
+    container_name: playwright-e2e
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    environment:
+      - CI=false
+    command: npx playwright test --reporter=html
