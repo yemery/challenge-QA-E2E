@@ -16,10 +16,10 @@ npm install
 npx playwright install --with-deps
 
 # Run tests
-npm test
+npx playwright test --headed --project "Mobile Chrome"
 
 # View test report
-npm run report
+npx playwright show-report
 ```
 
 ## Docker Setup
