@@ -60,6 +60,20 @@ export class ResultsPage {
     async clickOnFirstVehicleCard() {
         const firstCard = this.getVehicleCardByIndex(0);
         const cardLink = firstCard.getCardLink();
-        await cardLink.click();
+        
+        await Promise.all([
+            this.page.waitForLoadState('networkidle'),
+            cardLink.click()
+        ]);
+    }
+
+    async clickOnFirstVehicleCardAndWaitForDetails() {
+        const firstCard = this.getVehicleCardByIndex(0);
+        const cardLink = firstCard.getCardLink();
+        
+        await Promise.all([
+            this.page.waitForURL(/.*\/vehicle\/.*/, { timeout: 10000 }),
+            cardLink.click()
+        ]);
     }
 }

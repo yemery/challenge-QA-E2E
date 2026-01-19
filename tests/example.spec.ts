@@ -37,7 +37,5 @@ test('test home page interactions', async ({ page }) => {
   
   expect(await detailsCardPage.isSimulationButtonVisible()).toBeTruthy();
 
-
-
 });
 
