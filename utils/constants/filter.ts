@@ -1,4 +1,4 @@
-export const maxPriceFilter = 50000; // or your desired value
+export const maxPriceFilter = 350000; 
 
 export const filterConstants = {
     regions: {

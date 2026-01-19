@@ -44,6 +44,29 @@ export class FilterComponent {
         const filterDialog = this.page.getByRole('dialog');
         await expect(filterDialog).not.toBeVisible();
     }
+
+    async expectFilteredCards() {
+        const vehiclesContainer = this.page.getByTestId("vehicles");
+        const vehicleCards = vehiclesContainer.locator('span').filter({ 
+            has: this.page.locator('[data-testid^="vehicle-card-"]') 
+        });
+        
+        await this.page.waitForLoadState('networkidle');
+        
+        const cardCount = await vehicleCards.count();
+        
+        for (let i = 0; i < cardCount; i++) {
+            const card = vehicleCards.nth(i);
+            const priceLabel = card.locator('span.text-accent');
+            
+            await priceLabel.waitFor({ state: 'visible' });
+            const priceText = await priceLabel.textContent();
+
+            const priceValue = priceText ? parseFloat(priceText.replace(/[^0-9]/g,"")) : 0;
+            expect(priceValue).toBeLessThanOrEqual(maxPriceFilter);
+        }
+    }
+
 }
 
 
