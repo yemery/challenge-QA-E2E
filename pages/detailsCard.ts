@@ -4,7 +4,6 @@ import { detailsCardLocators } from '../utils/locators/detailsPage';
 export class DetailsCardPage {
   readonly page: Page;
   
-  // Vehicle Information Locators
   readonly brandLabel: Locator;
   readonly brandValue: Locator;
   readonly modelLabel: Locator;
@@ -20,7 +19,6 @@ export class DetailsCardPage {
   readonly priceValue: Locator;
   readonly monthlyPayment: Locator;
   
-  // Button Locators
   readonly simulationButton: Locator;
 
   constructor(page: Page) {

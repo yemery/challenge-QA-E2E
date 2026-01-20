@@ -1,5 +1,6 @@
 import { Page, Locator } from "@playwright/test";
 import { VehicleCard } from "./card.js";
+import resultsLocators from "../utils/locators/results.js";
 
 export class ResultsPage {
     readonly page: Page;
@@ -9,13 +10,13 @@ export class ResultsPage {
     }
 
     getVehiclesContainer() {
-        return this.page.getByTestId("vehicles");
+        return this.page.locator(resultsLocators.vehiclesContainer);
     }
 
     getVehicleCardSpans() {
         const vehiclesContainer = this.getVehiclesContainer();
         return vehiclesContainer.locator('span').filter({ 
-            has: this.page.locator('[data-testid^="vehicle-card-"]') 
+            has: this.page.locator(resultsLocators.vehicleCardPrefix) 
         });
     }
 
@@ -39,7 +40,7 @@ export class ResultsPage {
     getVehicleCardByTestId(testId: string): VehicleCard {
         const cardSpan = this.getVehiclesContainer()
             .locator('span')
-            .filter({ has: this.page.locator(`[data-testid="${testId}"]`) });
+            .filter({ has: this.page.locator(resultsLocators.vehicleCardById(testId)) });
         return new VehicleCard(cardSpan);
     }
 

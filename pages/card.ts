@@ -1,4 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
+import cardLocators from "../utils/locators/card.js";
 
 export class VehicleCard {
     readonly card: Locator;
@@ -8,23 +9,23 @@ export class VehicleCard {
     }
 
     getCardLink() {
-        return this.card.locator('a[data-testid^="vehicle-card-"]');
+        return this.card.locator(cardLocators.cardLink);
     }
 
     getTitle() {
-        return this.card.locator('h2.text-lynch-500').first();
+        return this.card.locator(cardLocators.title).first();
     }
 
     getSubtitle() {
-        return this.card.locator('h2.text-label-grayLight');
+        return this.card.locator(cardLocators.subtitle);
     }
 
     getMonthlyPrice() {
-        return this.card.locator('div.text-primary').filter({ hasText: 'À partir de' });
+        return this.card.locator(cardLocators.monthlyPrice).filter({ hasText: 'À partir de' });
     }
 
     getTotalPrice() {
-        return this.card.locator('span.text-accent');
+        return this.card.locator(cardLocators.totalPrice);
     }
 
 
